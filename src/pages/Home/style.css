@@ -1,0 +1,17 @@
+@media only screen and (max-width : 640px) {
+    #myChart {
+        height: none;
+    }
+}
+  
+@media only screen and (max-width : 940px) {
+    #myChart {
+        height: none;
+    }
+}
+  
+@media only screen and (max-width : 640px) {
+    #myChart {
+        height: none;
+    }
+}

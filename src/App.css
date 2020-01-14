@@ -37,6 +37,11 @@
   }
 }
 
+nav {
+  background-color: black;
+  color: gold;
+}
+
 .navbar-brand {
   color: gold;
 }

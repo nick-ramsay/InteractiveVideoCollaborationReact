@@ -10,7 +10,7 @@ class Home extends Component {
 
     componentDidMount() {
         this.checkVideoTime();
-        this.renderCanvas();
+        //this.renderCanvas();
     }
 
     currentVideoTime = () => {
@@ -20,9 +20,10 @@ class Home extends Component {
 
     checkVideoTime = () => setInterval(() => {
         this.currentVideoTime()
-        this.renderCanvas();
+        //this.renderCanvas();
     }, 100);
 
+    /*
     renderCanvas = () => {
         var c = document.getElementById("cv1");
         
@@ -31,9 +32,10 @@ class Home extends Component {
         ctx.font = "30px Arial";
         ctx.fillStyle = "gold";
         ctx.fillText(this.state.currentVideoTime, 10, 125);
-             
+        
+        //Test Canvas HTML: <canvas class="canvas" id="cv1">{this.state.currentVideoTime}</canvas>
     }
-
+    */
     render() {
         return (
             <div>
@@ -44,7 +46,6 @@ class Home extends Component {
                             <video id="testVideo" controls>
                                 <source src={Video} type="video/mp4" />
                             </video>
-                            <canvas class="canvas" id="cv1">{this.state.currentVideoTime}</canvas>
                         </div>
                         <h3><strong>Seconds Elapsed: {this.state.currentVideoTime}</strong></h3>
                     </div>

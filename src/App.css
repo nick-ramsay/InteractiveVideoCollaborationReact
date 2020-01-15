@@ -1,3 +1,8 @@
+body {
+  background-color: whitesmoke;
+  font-family: 'Quicksand', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -42,6 +47,7 @@ nav {
   color: gold;
 }
 
-.navbar-brand {
-  color: gold;
+video {
+  box-shadow: 10px 10px 10px grey;
+  margin-bottom: 40px;
 }

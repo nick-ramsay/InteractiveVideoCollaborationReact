@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import Video from "../../videos/2DOFSpringMassSystemProof.mp4";
 import "./style.css";
 
-class Home extends Component {
+class About extends Component {
     state = {
 
     }
@@ -15,9 +14,8 @@ class Home extends Component {
                 <Navbar />
                 <div className="container pt-4">
                     <div className="col-md-12 my-5 text-center">
-                        <video controls>
-                            <source src={Video} type="video/mp4" />
-                        </video>
+                        <h2>Hi There!</h2>
+                        <p>Here's a page that will eventually have some information about this application. Stay tuned!</p>
                     </div>
                 </div>
             </div>
@@ -26,4 +24,4 @@ class Home extends Component {
 
 }
 
-export default Home;
+export default About;

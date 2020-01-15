@@ -42,8 +42,8 @@ class Home extends Component {
                 <Navbar />
                 <div className="container pt-4">
                     <div className="col-md-12 my-5 text-center">
-                        <div>
-                            <video id="testVideo" controls>
+                        <div className="embed-responsive embed-responsive-16by9">
+                            <video className="embed-responsive-item" id="testVideo" controls>
                                 <source src={Video} type="video/mp4" />
                             </video>
                         </div>

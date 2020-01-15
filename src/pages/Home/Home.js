@@ -29,7 +29,7 @@ class Home extends Component {
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, c.width, c.height); 
         ctx.font = "30px Arial";
-        ctx.fillStyle = "white";
+        ctx.fillStyle = "gold";
         ctx.fillText(this.state.currentVideoTime, 10, 125);
              
     }

@@ -42,12 +42,13 @@ class Home extends Component {
                 <Navbar />
                 <div className="container pt-4">
                     <div className="col-md-12 my-5 text-center">
-                        <div className="embed-responsive embed-responsive-16by9">
+                        <div className="embed-responsive embed-responsive-16by9 canvasContainer">
                             <video className="embed-responsive-item" id="testVideo" controls>
                                 <source src={Video} type="video/mp4" />
                             </video>
                         </div>
-                        <h3><strong>Seconds Elapsed: {this.state.currentVideoTime}</strong></h3>
+                        <h3><strong>Seconds Elapsed:</strong></h3>
+                        <p>{this.state.currentVideoTime}</p>
                     </div>
                 </div>
             </div>

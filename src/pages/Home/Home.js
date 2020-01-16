@@ -47,7 +47,7 @@ class Home extends Component {
                                 <source src={Video} type="video/mp4" />
                             </video>
                         </div>
-                        <h3><strong>Seconds Elapsed:</strong></h3>
+                        <h6><strong>Seconds Elapsed:</strong></h6>
                         <p>{this.state.currentVideoTime}</p>
                     </div>
                 </div>

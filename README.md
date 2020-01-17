@@ -1,3 +1,6 @@
+** Deployed at: http://interactive-video-app.herokuapp.com/
+** Development still underway
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

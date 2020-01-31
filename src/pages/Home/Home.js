@@ -3,7 +3,10 @@ import Navbar from "../../components/Navbar/Navbar";
 import Video from "../../videos/2DOFSpringMassSystemProof.mp4";
 import "./style.css";
 
+
+
 class Home extends Component {
+
     state = {
         currentVideoTime: 0.00
     }
@@ -23,6 +26,7 @@ class Home extends Component {
         //this.renderCanvas();
     }, 100);
 
+
     /*
     renderCanvas = () => {
         var c = document.getElementById("cv1");
@@ -41,20 +45,27 @@ class Home extends Component {
             <div>
                 <Navbar />
                 <div className="container pt-4">
-                    <div className="col-md-12 my-5 text-center">
-                        <div className="embed-responsive embed-responsive-16by9 canvasContainer">
-                            <video className="embed-responsive-item" id="testVideo" controls>
-                                <source src={Video} type="video/mp4" />
-                            </video>
+                    <div className="row">
+                        <div className="col-md-12 my-5 text-center">
+                            <div className="embed-responsive embed-responsive-16by9 canvasContainer">
+                                <video className="embed-responsive-item" id="testVideo" controls>
+                                    <source src={Video} type="video/mp4" />
+                                </video>
+                            </div>
+                            <h6><strong>Seconds Elapsed:</strong></h6>
+                            <p>{this.state.currentVideoTime}</p>
                         </div>
-                        <h6><strong>Seconds Elapsed:</strong></h6>
-                        <p>{this.state.currentVideoTime}</p>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12 my-5 text-center">
+                            <canvas className="embed-responsive embed-responsive-16by9 canvasContainer" id="videoCanvas">
+                            </canvas>
+                        </div>
                     </div>
                 </div>
             </div>
         )
     }
-
 }
 
 export default Home;

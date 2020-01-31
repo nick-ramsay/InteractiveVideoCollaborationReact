@@ -15,7 +15,7 @@ class About extends Component {
                 <div className="container pt-4">
                     <div className="col-md-12 my-5 text-center">
                         <h2>Hi There!</h2>
-                        <p>Here's a page that will eventually have some information about this application. Stay tuned!</p>
+                        <p>Here is a page that will eventually have some information about this application. Stay tuned!</p>
                     </div>
                 </div>
             </div>

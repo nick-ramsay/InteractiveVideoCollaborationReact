@@ -11,6 +11,8 @@ function Navbar(props) {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav ml-auto">
+                    <a className="nav-item nav-link" href="/">Home</a>
+                    <a className="nav-item nav-link" href="/original-demo">Original Demo</a>
                     <a className="nav-item nav-link" href="/about">About</a>
                 </div>
             </div>

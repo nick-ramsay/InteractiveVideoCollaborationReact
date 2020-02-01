@@ -14,7 +14,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        //this.checkVideoTime();
+        this.checkVideoTime();
         //this.renderCanvas();
         //MathFunctions.MathFunctions();
         
@@ -27,11 +27,11 @@ class Home extends Component {
 
     checkVideoTime = () => setInterval(() => {
         this.currentVideoTime();
-        //this.renderCanvas();
+        this.renderCanvas();
     }, 100);
 
 
-    /*
+    
     renderCanvas = () => {
         var c = document.getElementById("videoCanvas");
 
@@ -42,7 +42,7 @@ class Home extends Component {
         ctx.fillText(this.state.currentVideoTime, 10, 125);
 
     }
-    */
+    
 
     render() {
         return (

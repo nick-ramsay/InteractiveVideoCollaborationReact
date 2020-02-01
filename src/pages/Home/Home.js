@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Video from "../../videos/2DOFSpringMassSystemProof.mp4";
+import  MathFunctions  from "../../simulations/MathFunctions";
+import  PhysicsSimulation  from "../../simulations/PhysicsSimulation";
 import "./style.css";
 
 
@@ -12,8 +14,10 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        this.checkVideoTime();
+        //this.checkVideoTime();
         //this.renderCanvas();
+        //MathFunctions.MathFunctions();
+        
     }
 
     currentVideoTime = () => {
@@ -22,24 +26,24 @@ class Home extends Component {
     }
 
     checkVideoTime = () => setInterval(() => {
-        this.currentVideoTime()
+        this.currentVideoTime();
         //this.renderCanvas();
     }, 100);
 
 
     /*
     renderCanvas = () => {
-        var c = document.getElementById("cv1");
-        
+        var c = document.getElementById("videoCanvas");
+
         var ctx = c.getContext("2d");
-        ctx.clearRect(0, 0, c.width, c.height); 
+        ctx.clearRect(0, 0, c.width, c.height);
         ctx.font = "30px Arial";
         ctx.fillStyle = "gold";
         ctx.fillText(this.state.currentVideoTime, 10, 125);
-        
-        //Test Canvas HTML: <canvas class="canvas" id="cv1">{this.state.currentVideoTime}</canvas>
+
     }
     */
+
     render() {
         return (
             <div>

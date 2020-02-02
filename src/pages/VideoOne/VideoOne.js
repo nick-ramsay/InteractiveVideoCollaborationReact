@@ -108,7 +108,8 @@ class VideoOne extends Component {
         event.preventDefault();
 
         this.setState({
-            videoPlaying: true
+            videoPlaying: true,
+            sceneBreak: false
         }, () => {
             this.handleVideoControls()
         });
@@ -170,8 +171,6 @@ class VideoOne extends Component {
         v.currentTime = scenes[selectedSceneIndex].startTime;
 
         this.playVideo(event);
-
-        console.log(selectedSceneIndex);
     }
 
     render() {
@@ -211,9 +210,13 @@ class VideoOne extends Component {
                         <div className="row">
                             <div className="col-md-12 text-center">
                                 <h4><strong>Scene Controllers</strong></h4>
-                                {scenes.map((scene, index) => (
-                                    <button key={index} className="btn-sm btn-dark m-1" data-scene-index={index} name={"sceneBtn" + index} onClick={this.setVideoSceneTime}>Scene {index + 1}</button>
-                                ))
+                                {this.state.sceneBreak &&
+                                    scenes.map((scene, index) => (
+                                        <button key={index} className="btn-sm btn-dark m-1" data-scene-index={index} name={"sceneBtn" + index} onClick={this.setVideoSceneTime}>Scene {index + 1}</button>
+                                    ))
+                                }
+                                {!this.state.sceneBreak &&
+                                    <p><strong>Between scenes...</strong></p>
                                 }
                             </div>
                         </div>

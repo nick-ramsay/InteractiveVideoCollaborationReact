@@ -11,10 +11,27 @@ var parentStyle = {
 }
 
 var scenes = [
-    {endTime: 5},
-    {endTime: 10},
-    {endTime: 15},
-    {endTime: 20}
+    {
+        name: "Scene 1",
+        startTime: 0,
+        endTime: 5
+    },
+    {
+        name: "Scene 2",
+        index: 1,
+        startTime: 5,
+        endTime: 10
+    },
+    {
+        name: "Scene 3",
+        startTime: 10,
+        endTime: 15
+    },
+    {
+        name: "Scene 4",
+        startTime: 15,
+        endTime: 20
+    }
 ]
 
 var v;
@@ -24,8 +41,11 @@ var ctx;
 class VideoOne extends Component {
 
     state = {
+        scenes: scenes,
+        finalScene: false,
         videoPlaying: false,
         videoMuted: false,
+        sceneBreak: false,
         currentVideoTime: 0.00,
         currentSceneIndex: 0,
         currentSceneInfo: scenes[0]
@@ -33,9 +53,27 @@ class VideoOne extends Component {
 
     currentSceneCheck = () => {
         for (let i = 0; i < scenes.length; i++) {
-            if (this.state.currentVideoTime > scenes[i].endTime) {
-                this.setState({currentSceneIndex: i+1, currentSceneInfo: scenes[i+1]})
+            if (this.state.currentVideoTime >= scenes[i].startTime && this.state.currentVideoTime < scenes[i].endTime) {
+                this.betweenScenePause();
+                this.setState({ currentSceneIndex: i, currentSceneInfo: scenes[i] })
             }
+        }
+    }
+
+    betweenScenePause = () => {
+        console.log(this.state.currentVideoTime);
+        console.log(this.state.currentSceneInfo.endTime);
+        if (this.state.currentSceneIndex !== (scenes.length-1)) {
+            this.setState({finalScene: false});
+        }
+        if (this.state.currentVideoTime >= this.state.currentSceneInfo.endTime && this.state.finalScene === false ) {
+            this.setState({ sceneBreak: true, videoPlaying: false },
+                () => {
+                    v.pause();
+                    if (this.state.currentSceneIndex === (scenes.length-1)) {
+                        this.setState({finalScene: true});
+                    }
+                })
         }
     }
 
@@ -122,6 +160,18 @@ class VideoOne extends Component {
         }
     }
 
+    setVideoSceneTime = event => {
+        event.preventDefault();
+
+        var selectedSceneIndex = event.currentTarget.dataset.sceneIndex;
+
+        v.currentTime = scenes[selectedSceneIndex].startTime;
+
+        this.playVideo(event);
+
+        console.log(selectedSceneIndex);
+    }
+
     render() {
         return (
             <div className="originalDemoContent">
@@ -146,12 +196,16 @@ class VideoOne extends Component {
                             </div>
                             <div className="col-md-4 text-center">
                                 <h6><strong>Current Scene Index:</strong></h6>
-                                <p>Scene: {this.state.currentSceneIndex + 1}</p>
+                                <p>{this.state.currentSceneInfo.name}</p>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-md-12 text-center">
                                 <h4><strong>Scene Controllers</strong></h4>
+                                {scenes.map((scene, index) => (
+                                    <button key={index} className="btn-sm btn-dark m-1" data-scene-index={index} name={"sceneBtn" + index} onClick={this.setVideoSceneTime}>Scene {index + 1}</button>
+                                ))
+                                }
                             </div>
                         </div>
                         <div className="row">

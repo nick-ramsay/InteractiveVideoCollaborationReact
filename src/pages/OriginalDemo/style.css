@@ -1,7 +1,13 @@
 body {
     text-align : center;
-    background : #36A;
+    background-color: antiquewhite;
 }
+
+.canvasContainer {
+    background-color: white;
+    padding: 5px;
+}
+
 h2 {
     color : white;
 }

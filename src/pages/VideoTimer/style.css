@@ -1,0 +1,30 @@
+#videoCanvas {
+    height: 100%;
+    width: 100%;
+    background-color: grey;
+}
+
+@media only screen and (max-width : 640px) {
+    #myChart {
+        height: none;
+    }
+}
+  
+@media only screen and (max-width : 940px) {
+    #myChart {
+        height: none;
+    }
+}
+  
+@media only screen and (max-width : 640px) {
+    #myChart {
+        height: none;
+    }
+}
+
+.canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }

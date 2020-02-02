@@ -18,7 +18,6 @@ var scenes = [
     },
     {
         name: "Scene 2",
-        index: 1,
         startTime: 5,
         endTime: 10
     },
@@ -61,18 +60,17 @@ class VideoOne extends Component {
     }
 
     betweenScenePause = () => {
-        console.log(this.state.currentVideoTime);
-        console.log(this.state.currentSceneInfo.endTime);
-        if (this.state.currentSceneIndex !== (scenes.length-1)) {
-            this.setState({finalScene: false});
+        console.log(this.state.currentSceneIndex === (scenes.length - 1));
+        if (this.state.currentSceneIndex !== (scenes.length - 1)) {
+            this.setState({ finalScene: false });
         }
-        if (this.state.currentVideoTime >= this.state.currentSceneInfo.endTime && this.state.finalScene === false ) {
+        if (this.state.currentVideoTime >= this.state.currentSceneInfo.endTime && this.state.finalScene === false) {
             this.setState({ sceneBreak: true, videoPlaying: false },
                 () => {
-                    v.pause();
-                    if (this.state.currentSceneIndex === (scenes.length-1)) {
-                        this.setState({finalScene: true});
+                    if (this.state.currentSceneIndex == (scenes.length - 1)) {
+                        this.setState({ finalScene: true });
                     }
+                    v.pause();
                 })
         }
     }
@@ -191,12 +189,19 @@ class VideoOne extends Component {
                         </div>
                         <div className="row">
                             <div className="col-md-4 text-center">
-                                <h6><strong>Seconds Elapsed:</strong></h6>
+                                <h6><strong>Seconds Elapsed</strong></h6>
                                 <p>{this.state.currentVideoTime}</p>
                             </div>
                             <div className="col-md-4 text-center">
-                                <h6><strong>Current Scene Index:</strong></h6>
+                                <h6><strong>Current Scene Index</strong></h6>
                                 <p>{this.state.currentSceneInfo.name}</p>
+                            </div>
+                            <div className="col-md-4 text-center">
+                                <h6><strong>Current Scene Start/End</strong></h6>
+                                <p>Start: {this.state.currentSceneInfo.startTime}</p>
+                                {!this.state.finalScene &&
+                                    <p> End: {this.state.currentSceneInfo.endTime}</p>
+                                }
                             </div>
                         </div>
                         <div className="row">
@@ -232,7 +237,7 @@ class VideoOne extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }

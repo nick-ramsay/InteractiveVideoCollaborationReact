@@ -10,6 +10,13 @@ var parentStyle = {
     width: "888px"
 }
 
+var scenes = {
+    scene1: 5,
+    scene2: 10,
+    scene3: 15,
+    scene4: 20
+}
+
 var v;
 var c;
 var ctx;
@@ -24,7 +31,8 @@ class OriginalDemo extends Component {
 
     state = {
         videoPlaying: false,
-        videoMuted: false
+        videoMuted: false,
+        currentVideoTime: 0.00
     }
 
     componentDidMount() {
@@ -38,31 +46,69 @@ class OriginalDemo extends Component {
 
     refreshCanvasVideo = () => setInterval(() => {
         this.renderVideo();
+        this.currentVideoTime();
     }, 20);
+
+    currentVideoTime = () => {
+        this.setState({ currentVideoTime: v.currentTime })
+    }
 
     playVideo = event => {
         event.preventDefault();
 
-        this.setState({ videoPlaying: true });
+        this.setState({
+            videoPlaying: true
+        }, () => {
+            this.handleVideoControls()
+        });
+
     }
 
     pauseVideo = event => {
         event.preventDefault();
 
-        this.setState({ videoPlaying: false }).then(this.renderVideo);
+        this.setState({
+            videoPlaying: false
+        }, () => {
+            this.handleVideoControls()
+        })
+
     }
 
     muteVideo = event => {
         event.preventDefault();
 
-        this.setState({ videoMuted: true });
+        this.setState({
+            videoMuted: true
+        }, () => {
+            this.handleVideoControls()
+        })
     }
 
 
     unmuteVideo = event => {
         event.preventDefault();
 
-        this.setState({ videoMuted: false });
+        this.setState({
+            videoMuted: false
+        }, () => {
+            this.handleVideoControls()
+        })
+    }
+
+    handleVideoControls = () => {
+        if (this.state.videoPlaying) {
+            v.play();
+        }
+        if (!this.state.videoPlaying) {
+            v.pause();
+        }
+        if (this.state.videoMuted) {
+            v.muted = true;
+        }
+        if (!this.state.videoMuted) {
+            v.muted = false;
+        }
     }
 
     render() {
@@ -83,7 +129,21 @@ class OriginalDemo extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-md-3 mb-1">
+                            <div className="col-md-12 text-center">
+                                <h6><strong>Seconds Elapsed:</strong></h6>
+                                <p>{this.state.currentVideoTime}</p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12 text-center">
+                                <h4><strong>Scene Controllers</strong></h4>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12">
+                                <h4><strong>Video Controllers</strong></h4>
+                            </div>
+                            <div className="col-md-3 mb-1 text-center">
                                 {!this.state.videoPlaying &&
                                     <button className="btn-sm btn-success" name="playBtn" onClick={this.playVideo}>Play</button>
                                 }

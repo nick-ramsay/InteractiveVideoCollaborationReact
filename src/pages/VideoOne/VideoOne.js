@@ -170,7 +170,10 @@ class VideoOne extends Component {
 
         v.currentTime = scenes[selectedSceneIndex].startTime;
 
-        this.playVideo(event);
+        this.setState({sceneBreak: false}, 
+            ()=> {
+                this.playVideo(event)
+            })
     }
 
     render() {

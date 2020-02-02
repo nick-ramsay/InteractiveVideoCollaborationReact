@@ -6,8 +6,12 @@ import mediaSource from "../../videos/2DOFSpringMassSystemProof.mp4";
 import "./style.css";
 
 var parentStyle = {
-    margin: "0 auto",
-    width: "888px"
+    margin: "0 auto"
+}
+
+var responsiveCanvas = {
+    marginBottom: "0px",
+    paddingBottom: "0px"
 }
 
 var scenes = [
@@ -182,9 +186,9 @@ class VideoOne extends Component {
                                 <video id="myVideo" src={mediaSource} controls></video>
                             </div>
                         </div>
-                        <div className="row">
-                            <div class="parent justify-content-center" style={parentStyle}>
-                                <canvas id="myCanvas" width="888" height="500"></canvas>
+                        <div className="row justify-content-center">
+                            <div style={responsiveCanvas}>
+                                <canvas className="canvasContainer" id="myCanvas" width="854" height="480"></canvas>
                             </div>
                         </div>
                         <div className="row">

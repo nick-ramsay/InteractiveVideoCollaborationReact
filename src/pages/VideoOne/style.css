@@ -5,16 +5,13 @@ body {
 
 .canvasContainer {
     background-color: white;
-    padding: 5px;
 }
 
 h2 {
     color : white;
 }
-canvas {
-    border : 5px gold solid;
-    /*cursor : pointer;*/
-}
+
+
 a {
   color : #F93;
 }

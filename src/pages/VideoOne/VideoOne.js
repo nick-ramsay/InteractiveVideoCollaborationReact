@@ -83,8 +83,7 @@ class VideoOne extends Component {
     initializeCanvas = () => {
         v = document.getElementById("myVideo")
         c = document.getElementById("myCanvas")
-        c1 = c.cloneNode(true);
-        ctx = c.getContext("2d")
+        ctx = c.getContext("2d");
     }
 
     componentDidMount() {
@@ -93,18 +92,19 @@ class VideoOne extends Component {
     }
 
     renderVideo = () => {
-        console.log(v.offsetWidth);
-        console.log(v.offsetHeight);
-        console.log(c.offsetWidth);
-        console.log(c.offsetHeight);
 
-        canvasHeight = v.offsetHeight;
-        canvasWidth = v.offsetWidth;
+        if (v.currentTime === 0) {
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, c.width, c.height);
+        }
 
-        var vratio = (c.offsetHeight / v.offSetHeight) * v.offsetWidth;
-        var hratio = (c.offsetWidth / v.offsetWidth) * v.offsetHeight;
-        ctx.drawImage(v, 0, 0,vratio,c.offsetHeight);
-        ctx.drawImage(v, 0, 0,c.offsetWidth,hratio);
+        canvasHeight = v.videoHeight;
+        canvasWidth = v.videoWidth;
+
+        var vratio = (c.width / v.videoHeight) * v.videoWidth;
+        ctx.drawImage(v, 0, 0, vratio, c.height);
+        var hratio = (c.width / v.videoWidth) * v.videoHeight;
+        ctx.drawImage(v, 0, 0, c.width, hratio);
     }
 
     refreshCanvasVideo = () => setInterval(() => {
@@ -183,8 +183,8 @@ class VideoOne extends Component {
 
         v.currentTime = scenes[selectedSceneIndex].startTime;
 
-        this.setState({sceneBreak: false}, 
-            ()=> {
+        this.setState({ sceneBreak: false },
+            () => {
                 this.playVideo(event)
             })
     }
@@ -196,14 +196,14 @@ class VideoOne extends Component {
                 <div className="container pt-4">
                     <div className="col-md-12 my-5 text-center canvasContainer">
                         <h1><strong>Video One</strong></h1>
-                        <div className="row">
+                        <div className="row d-none">
                             <div className="embed-responsive embed-responsive-16by9">
                                 <video className="embed-responsive-item pl-3 pr-3" id="myVideo" src={mediaSource} controls></video>
                             </div>
                         </div>
-                        <div className="row embed-responsive-16by9 justify-content-center">
-                            <div style={responsiveCanvas}>
-                                <canvas className="embed-responsive-item pl-3 pr-3" id="myCanvas" width={canvasHeight} height={canvasWidth}></canvas>
+                        <div className="row mt-1 justify-content-center">
+                            <div className="embed-responsive embed-responsive-16by9" style={responsiveCanvas}>
+                                <canvas className="embed-responsive-item pl-3 pr-3" id="myCanvas" width={canvasWidth} height={canvasHeight}></canvas>
                             </div>
                         </div>
                         <div className="row">

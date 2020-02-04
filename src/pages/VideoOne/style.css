@@ -3,11 +3,6 @@ body {
     background-color: antiquewhite;
 }
 
-#myCanvas {
-  width: 854px; 
-  height: 480px;
-}
-
 a {
   color : #F93;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 import MathFunctions from "../../simulations/MathFunctions";
 import PhysicsSimulation from "../../simulations/PhysicsSimulation";
 import mediaSource from "../../videos/2DOFSpringMassSystemProof.mp4";
@@ -247,6 +248,7 @@ class VideoOne extends Component {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div >
         )
     }

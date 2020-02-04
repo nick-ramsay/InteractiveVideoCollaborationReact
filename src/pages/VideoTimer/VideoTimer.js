@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 import Video from "../../videos/2DOFSpringMassSystemProof.mp4";
 import  MathFunctions  from "../../simulations/MathFunctions";
 import  PhysicsSimulation  from "../../simulations/PhysicsSimulation";
@@ -66,6 +67,7 @@ class VideoTimer extends Component {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
         )
     }

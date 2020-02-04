@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 import Images from "../../images/video-one.jpg";
 import "./style.css";
 
@@ -15,6 +16,7 @@ class Home extends Component {
                 <Navbar />
                 <div className="container pt-4">
                     <div className="col-md-12 my-5">
+                        <h2><strong>Videos</strong></h2>
                         <div className="row" align="center">
                             <div className="col-md-6">
                                 <div class="card" style={cardStyle}>
@@ -37,6 +39,7 @@ class Home extends Component {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
         )
     }

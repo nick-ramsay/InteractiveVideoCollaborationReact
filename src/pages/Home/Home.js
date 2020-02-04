@@ -19,7 +19,7 @@ class Home extends Component {
                         <h2><strong>Videos</strong></h2>
                         <div className="row" align="center">
                             <div className="col-md-6">
-                                <div class="card p-1" style={cardStyle}>
+                                <div class="card m-1" style={cardStyle}>
                                     <div class="card-body">
                                         <h5 class="card-title">Video One</h5>
                                         <p class="card-text">Currently Under Development: This page contains the prototype for the video and simulation solution.</p>
@@ -27,9 +27,9 @@ class Home extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6 p-1">
+                            <div className="col-md-6">
                                 <div class="card" style={cardStyle}>
-                                    <div class="card-body">
+                                    <div class="card-body m-1">
                                         <h5 class="card-title">Video Timer</h5>
                                         <p class="card-text">An initial page used as sandbox to test tracking video time.</p>
                                         <a href="/video-timer" class="btn btn-dark">Video Timer</a>

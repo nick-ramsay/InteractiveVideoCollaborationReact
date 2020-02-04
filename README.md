@@ -1,5 +1,6 @@
-** Deployed at: http://interactive-video-app.herokuapp.com/
-** Development still underway
+**Development still underway (Pardon the Appearance :D )**
+
+**Deployed at:** http://interactive-video-app.herokuapp.com/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

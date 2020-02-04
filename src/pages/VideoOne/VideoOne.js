@@ -6,10 +6,6 @@ import PhysicsSimulation from "../../simulations/PhysicsSimulation";
 import mediaSource from "../../videos/2DOFSpringMassSystemProof.mp4";
 import "./style.css";
 
-var parentStyle = {
-    margin: "0 auto"
-}
-
 var responsiveCanvas = {
     marginBottom: "0px",
     paddingBottom: "0px"
@@ -40,7 +36,11 @@ var scenes = [
 
 var v;
 var c;
+var c1;
 var ctx;
+
+var canvasHeight;
+var canvasWidth;
 
 class VideoOne extends Component {
 
@@ -83,6 +83,7 @@ class VideoOne extends Component {
     initializeCanvas = () => {
         v = document.getElementById("myVideo")
         c = document.getElementById("myCanvas")
+        c1 = c.cloneNode(true);
         ctx = c.getContext("2d")
     }
 
@@ -92,7 +93,18 @@ class VideoOne extends Component {
     }
 
     renderVideo = () => {
-        ctx.drawImage(v, 0, 0);
+        console.log(v.offsetWidth);
+        console.log(v.offsetHeight);
+        console.log(c.offsetWidth);
+        console.log(c.offsetHeight);
+
+        canvasHeight = v.offsetHeight;
+        canvasWidth = v.offsetWidth;
+
+        var vratio = (c.offsetHeight / v.offSetHeight) * v.offsetWidth;
+        var hratio = (c.offsetWidth / v.offsetWidth) * v.offsetHeight;
+        ctx.drawImage(v, 0, 0,vratio,c.offsetHeight);
+        ctx.drawImage(v, 0, 0,c.offsetWidth,hratio);
     }
 
     refreshCanvasVideo = () => setInterval(() => {
@@ -184,14 +196,14 @@ class VideoOne extends Component {
                 <div className="container pt-4">
                     <div className="col-md-12 my-5 text-center canvasContainer">
                         <h1><strong>Video One</strong></h1>
-                        <div className="row d-none">
-                            <div class="parent" style={parentStyle}>
-                                <video id="myVideo" src={mediaSource} controls></video>
+                        <div className="row">
+                            <div className="embed-responsive embed-responsive-16by9">
+                                <video className="embed-responsive-item pl-3 pr-3" id="myVideo" src={mediaSource} controls></video>
                             </div>
                         </div>
-                        <div className="row justify-content-center">
+                        <div className="row embed-responsive-16by9 justify-content-center">
                             <div style={responsiveCanvas}>
-                                <canvas className="canvasContainer" id="myCanvas" width="854" height="480"></canvas>
+                                <canvas className="embed-responsive-item pl-3 pr-3" id="myCanvas" width={canvasHeight} height={canvasWidth}></canvas>
                             </div>
                         </div>
                         <div className="row">

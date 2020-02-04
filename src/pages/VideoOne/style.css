@@ -3,8 +3,9 @@ body {
     background-color: antiquewhite;
 }
 
-.canvasContainer {
-    background-color: white;
+#myCanvas {
+  width: 854px; 
+  height: 480px;
 }
 
 a {

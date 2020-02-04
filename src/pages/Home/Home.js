@@ -23,7 +23,7 @@ class Home extends Component {
                                     <div class="card-body">
                                         <h5 class="card-title">Video One</h5>
                                         <p class="card-text">Currently Under Development: This page contains the prototype for the video and simulation solution.</p>
-                                        <a href="/video-one" class="btn btn-primary">Video One</a>
+                                        <a href="/video-one" class="btn btn-dark">Video One</a>
                                     </div>
                                 </div>
                             </div>
@@ -32,7 +32,7 @@ class Home extends Component {
                                     <div class="card-body">
                                         <h5 class="card-title">Video Timer</h5>
                                         <p class="card-text">An initial page used as sandbox to test tracking video time.</p>
-                                        <a href="/video-timer" class="btn btn-primary">Video Timer</a>
+                                        <a href="/video-timer" class="btn btn-dark">Video Timer</a>
                                     </div>
                                 </div>
                             </div>

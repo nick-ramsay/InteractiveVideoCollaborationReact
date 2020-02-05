@@ -7,7 +7,7 @@ function Footer(props) {
     return (
         <footer className="footer bg-custom fixed-bottom">
             <div className="container">
-                <a href="https://github.com/nick-ramsay/InteractiveVideoCollaborationReact"><img src={GithubLogo} width="40px"/></a>
+                <a href="https://github.com/nick-ramsay/InteractiveVideoCollaborationReact"><img src={GithubLogo} width="60px"/></a>
             </div>
         </footer>
     )

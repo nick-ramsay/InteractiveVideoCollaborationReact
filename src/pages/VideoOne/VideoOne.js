@@ -27,8 +27,7 @@ var videoControllers = {
     bottom: "0px",
     color: "white",
     backgroundColor: "rgba(0,0,0,0.5)",
-    marginBottom: "0px",
-    width: "100%"
+    marginBottom: "0px"
 }
 
 var scenes = [
@@ -223,27 +222,29 @@ class VideoOne extends Component {
                         </div>
                         <div className="row mt-1 justify-content-center">
                             <div className="embed-responsive embed-responsive-16by9" style={responsiveCanvas}>
-                                <canvas className="embed-responsive-item pl-3 pr-3" id="myCanvas" width={canvasWidth} height={canvasHeight}></canvas>
-                                <div className="pl-3 pr-3" style={sceneControllers}>
-                                    {this.state.sceneBreak &&
-                                        scenes.map((scene, index) => (
-                                            <button key={index} className="btn-sm btn-warning m-1" data-scene-index={index} name={"sceneBtn" + index} onClick={this.setVideoSceneTime}>Scene {index + 1}</button>
-                                        ))
-                                    }
-                                </div>
-                                <div className="pl-3 pr-3 text-center" style={videoControllers}>
-                                    {this.state.videoPlaying &&
-                                        <img className="videoControlIcons float-left" src={pauseIcon} onClick={this.pauseVideo} />
-                                    }
-                                    {!this.state.videoPlaying &&
-                                        <img className="videoControlIcons float-left" src={playIcon} onClick={this.playVideo} />
-                                    }
-                                    {this.state.videoMuted &&
-                                        <img className="videoControlIcons float-left" src={unmuteIcon} onClick={this.unmuteVideo} />
-                                    }
-                                    {!this.state.videoMuted &&
-                                        <img className="videoControlIcons float-left" src={muteIcon} onClick={this.muteVideo} />
-                                    }
+                                <div className="pr-3 pl-3">
+                                    <canvas className="embed-responsive-item pl-3 pr-3" id="myCanvas" width={canvasWidth} height={canvasHeight}></canvas>
+                                    <div style={sceneControllers}>
+                                        {this.state.sceneBreak &&
+                                            scenes.map((scene, index) => (
+                                                <button key={index} className="btn-sm btn-warning m-1" data-scene-index={index} name={"sceneBtn" + index} onClick={this.setVideoSceneTime}>Scene {index + 1}</button>
+                                            ))
+                                        }
+                                    </div>
+                                    <div style={videoControllers}>
+                                        {this.state.videoPlaying &&
+                                            <img className="videoControlIcons float-left" src={pauseIcon} onClick={this.pauseVideo} />
+                                        }
+                                        {!this.state.videoPlaying &&
+                                            <img className="videoControlIcons float-left" src={playIcon} onClick={this.playVideo} />
+                                        }
+                                        {this.state.videoMuted &&
+                                            <img className="videoControlIcons float-right" src={unmuteIcon} onClick={this.unmuteVideo} />
+                                        }
+                                        {!this.state.videoMuted &&
+                                            <img className="videoControlIcons float-right" src={muteIcon} onClick={this.muteVideo} />
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>

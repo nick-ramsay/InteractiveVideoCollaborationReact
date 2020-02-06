@@ -26,6 +26,7 @@ var videoControllers = {
     position: "absolute",
     bottom: "0px",
     color: "white",
+    width: "100%",
     backgroundColor: "rgba(0,0,0,0.5)",
     marginBottom: "0px"
 }
@@ -55,6 +56,7 @@ var scenes = [
 
 var v;
 var c;
+var vc; //Video controllers appearing on the canvas
 var c1;
 var ctx;
 
@@ -100,8 +102,9 @@ class VideoOne extends Component {
     }
 
     initializeCanvas = () => {
-        v = document.getElementById("myVideo")
-        c = document.getElementById("myCanvas")
+        v = document.getElementById("myVideo");
+        c = document.getElementById("myCanvas");
+        vc = document.getElementById("videoControllers");
         ctx = c.getContext("2d");
     }
 
@@ -124,6 +127,8 @@ class VideoOne extends Component {
         ctx.drawImage(v, 0, 0, vratio, c.height);
         var hratio = (c.width / v.videoWidth) * v.videoHeight;
         ctx.drawImage(v, 0, 0, c.width, hratio);
+
+        vc.width = canvasWidth;
     }
 
     refreshCanvasVideo = () => setInterval(() => {
@@ -217,21 +222,21 @@ class VideoOne extends Component {
                         <h1><strong>Video One</strong></h1>
                         <div className="row d-none">
                             <div className="embed-responsive embed-responsive-16by9">
-                                <video className="embed-responsive-item  pl-3  pr-3" id="myVideo" src={mediaSource} controls></video>
+                                <video className="embed-responsive-item" id="myVideo" src={mediaSource} controls></video>
                             </div>
                         </div>
                         <div className="row mt-1 justify-content-center">
                             <div className="embed-responsive embed-responsive-16by9" style={responsiveCanvas}>
-                                <div className="pr-3 pl-3">
-                                    <canvas className="embed-responsive-item pl-3 pr-3" id="myCanvas" width={canvasWidth} height={canvasHeight}></canvas>
-                                    <div style={sceneControllers}>
+                                <div>
+                                    <canvas className="embed-responsive-item" id="myCanvas" width={canvasWidth} height={canvasHeight}></canvas>
+                                    <div className="col-md-12 p-0" style={sceneControllers}>
                                         {this.state.sceneBreak &&
                                             scenes.map((scene, index) => (
                                                 <button key={index} className="btn-sm btn-warning m-1" data-scene-index={index} name={"sceneBtn" + index} onClick={this.setVideoSceneTime}>Scene {index + 1}</button>
                                             ))
                                         }
                                     </div>
-                                    <div style={videoControllers}>
+                                    <div id="videoControllers" style={videoControllers}>
                                         {this.state.videoPlaying &&
                                             <img className="videoControlIcons float-left" src={pauseIcon} onClick={this.pauseVideo} />
                                         }
@@ -249,55 +254,23 @@ class VideoOne extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-md-4 text-center">
+                            <div className="col-md-3 text-center">
                                 <h6><strong>Seconds Elapsed</strong></h6>
                                 <p>{this.state.currentVideoTime}</p>
                             </div>
-                            <div className="col-md-4 text-center">
+                            <div className="col-md-3 text-center">
                                 <h6><strong>Current Scene Index</strong></h6>
                                 <p>{this.state.currentSceneInfo.name}</p>
                             </div>
-                            <div className="col-md-4 text-center">
-                                <h6><strong>Current Scene Start/End</strong></h6>
-                                <p>Start: {this.state.currentSceneInfo.startTime}</p>
+                            <div className="col-md-3 text-center">
+                                <h6><strong>Current Scene Start (Seconds)</strong></h6>
+                                <p>{this.state.currentSceneInfo.startTime} seconds</p>
+                            </div>
+                            <div className="col-md-3 text-center">
+                                <h6><strong>Current Scene End</strong></h6>
                                 {!this.state.finalScene &&
-                                    <p> End: {this.state.currentSceneInfo.endTime}</p>
+                                    <p>{this.state.currentSceneInfo.endTime} seconds</p>
                                 }
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-md-12 text-center">
-                                <h4><strong>Scene Controllers</strong></h4>
-                                {this.state.sceneBreak &&
-                                    scenes.map((scene, index) => (
-                                        <button key={index} className="btn-sm btn-dark m-1" data-scene-index={index} name={"sceneBtn" + index} onClick={this.setVideoSceneTime}>Scene {index + 1}</button>
-                                    ))
-                                }
-                                {!this.state.sceneBreak &&
-                                    <p><strong>Between scenes...</strong></p>
-                                }
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-md-12">
-                                <h4><strong>Video Controllers</strong></h4>
-                            </div>
-                            <div className="col-md-4 mb-1 text-center">
-                                {!this.state.videoPlaying &&
-                                    <button className="btn-sm btn-success" name="playBtn" onClick={this.playVideo}>Play</button>
-                                }
-                                {this.state.videoPlaying &&
-                                    <button className="btn-sm btn-danger" name="pauseBtn" onClick={this.pauseVideo}>Pause</button>
-                                }
-                            </div>
-                            <div className="col-md-4 mb-1">
-                                {!this.state.videoMuted &&
-                                    <button className="btn-sm btn-warning" name="muteBtn" onClick={this.muteVideo}>Mute</button>
-                                }
-                                {this.state.videoMuted &&
-                                    <button className="btn-sm btn-primary" name="unmutedBtn" onClick={this.unmuteVideo}>Unmute</button>
-                                }
-
                             </div>
                         </div>
                     </div>

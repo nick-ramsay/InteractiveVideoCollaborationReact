@@ -292,14 +292,14 @@ class VideoOne extends Component {
                                     {this.state.sceneBreak &&
                                         <div className="col-md-12 p-0 arrowsIcon" style={sceneArrowsContainer}>
                                             {this.state.sceneIndex != 0 &&
-                                                <img className="arrowIcons float-left" data-scene-index={this.state.currentSceneIndex - 1} src={backArrow} style={sceneArrows} onClick={this.setVideoSceneTime} />
+                                                <img className="arrowIcons float-left" id="lastSceneIcon" data-scene-index={this.state.currentSceneIndex - 1} src={backArrow} style={sceneArrows} onClick={this.setVideoSceneTime} />
                                             }
                                             {!this.state.finalScene &&
-                                                <img className="arrowIcons float-right" src={forwardArrow} style={sceneArrows} onClick={this.playVideo} />
+                                                <img className="arrowIcons float-right" id="nextSceneIcon" src={forwardArrow} style={sceneArrows} onClick={this.playVideo} />
                                             }
                                         </div>
                                     }
-                                    <div className="col-md-12 p-0" style={sceneControllers}>
+                                    <div className="col-md-6 offset-md-3" style={sceneControllers}>
                                         {this.state.sceneBreak &&
                                             scenes.map((scene, index) => (
                                                 <button key={index} className="btn-sm btn-warning m-1" data-scene-index={index} name={"sceneBtn" + index} onClick={this.setVideoSceneTime}>Scene {index + 1}</button>

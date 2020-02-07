@@ -10,11 +10,24 @@ import muteIcon from "../../images/mute_icon.png";
 import unmuteIcon from "../../images/unmute_icon.png";
 import fullScreenIcon from "../../images/fullscreen.png";
 import exitFullScreenIcon from "../../images/fullscreen_exit.png";
+import backArrow from "../../images/back_arrow.png";
+import forwardArrow from "../../images/forward_arrow.png";
 import "./style.css";
 
 var responsiveCanvas = {
     marginBottom: "0px",
     paddingBottom: "0px",
+}
+
+var sceneArrowsContainer = {
+    position: "absolute",
+    top: "50%",
+    marginTop: "0px",
+    width: "100%"
+}
+
+var sceneArrows = {
+    backgroundColor: "gold"
 }
 
 var sceneControllers = {
@@ -223,7 +236,7 @@ class VideoOne extends Component {
 
     setFullScreen = event => {
         event.preventDefault();
-        this.setState({fullScreen: true}, () => {
+        this.setState({ fullScreen: true }, () => {
             canvasContainer.requestFullscreen();
             window.screen.orientation.lock("landscape");
         });
@@ -231,11 +244,34 @@ class VideoOne extends Component {
 
     exitFullScreen = event => {
         event.preventDefault();
-        this.setState({fullScreen: false}, () => {
+        this.setState({ fullScreen: false }, () => {
             document.exitFullscreen();
             window.screen.orientation.unlock();
         }
-        )};
+        )
+    };
+
+    playNextScene = event => {
+        event.preventDefault();
+        this.playVideo(event);
+    }
+
+    playLastScene = event => {
+        event.preventDefault();
+
+        var currentSceneIndex = this.state.currentSceneIndex;
+
+        if (this.state.currentSceneIndex !== 0) {
+            this.setState({
+                currentSceneIndex: (currentSceneIndex - 1),
+                currentSceneInfo: scenes[currentSceneIndex - 1],
+                currentVideoTime: scenes[currentSceneIndex - 1].startTime,
+                sceneBreak: false
+            }, () => {
+                this.playVideo(event);
+            })
+        }
+    }
 
     render() {
         return (
@@ -253,6 +289,16 @@ class VideoOne extends Component {
                             <div className="embed-responsive embed-responsive-16by9" style={responsiveCanvas}>
                                 <div id="canvasContainer">
                                     <canvas className="embed-responsive-item" id="myCanvas" width={canvasWidth} height={canvasHeight}></canvas>
+                                    {this.state.sceneBreak &&
+                                        <div className="col-md-12 p-0 arrowsIcon" style={sceneArrowsContainer}>
+                                            {this.state.sceneIndex != 0 &&
+                                                <img className="arrowIcons float-left" data-scene-index={this.state.currentSceneIndex - 1} src={backArrow} style={sceneArrows} onClick={this.setVideoSceneTime} />
+                                            }
+                                            {!this.state.finalScene &&
+                                                <img className="arrowIcons float-right" src={forwardArrow} style={sceneArrows} onClick={this.playVideo} />
+                                            }
+                                        </div>
+                                    }
                                     <div className="col-md-12 p-0" style={sceneControllers}>
                                         {this.state.sceneBreak &&
                                             scenes.map((scene, index) => (
@@ -289,11 +335,11 @@ class VideoOne extends Component {
                                 <p>{this.state.currentVideoTime}</p>
                             </div>
                             <div className="col-md-3 text-center">
-                                <h6><strong>Current Scene Index</strong></h6>
+                                <h6><strong>Current Scene</strong></h6>
                                 <p>{this.state.currentSceneInfo.name}</p>
                             </div>
                             <div className="col-md-3 text-center">
-                                <h6><strong>Current Scene Start (Seconds)</strong></h6>
+                                <h6><strong>Current Scene Start</strong></h6>
                                 <p>{this.state.currentSceneInfo.startTime} seconds</p>
                             </div>
                             <div className="col-md-3 text-center">

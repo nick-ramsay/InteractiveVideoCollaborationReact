@@ -30,7 +30,9 @@ var videoControllers = {
     color: "white",
     width: "100%",
     backgroundColor: "rgba(0,0,0,0.5)",
-    marginBottom: "0px"
+    marginBottom: "0px",
+    paddingLeft: "4px",
+    paddingRight: "4px"
 }
 
 var scenes = [

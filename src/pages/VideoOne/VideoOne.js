@@ -8,6 +8,8 @@ import playIcon from "../../images/play_icon.png";
 import pauseIcon from "../../images/pause_icon.png";
 import muteIcon from "../../images/mute_icon.png";
 import unmuteIcon from "../../images/unmute_icon.png";
+import fullScreenIcon from "../../images/fullscreen.png";
+import exitFullScreenIcon from "../../images/fullscreen_exit.png";
 import "./style.css";
 
 var responsiveCanvas = {
@@ -54,6 +56,7 @@ var scenes = [
     }
 ]
 
+var canvasContainer;
 var v;
 var c;
 var vc; //Video controllers appearing on the canvas
@@ -104,6 +107,7 @@ class VideoOne extends Component {
     initializeCanvas = () => {
         v = document.getElementById("myVideo");
         c = document.getElementById("myCanvas");
+        canvasContainer = document.getElementById("canvasContainer");
         vc = document.getElementById("videoControllers");
         ctx = c.getContext("2d");
     }
@@ -215,6 +219,20 @@ class VideoOne extends Component {
             })
     }
 
+    setFullScreen = event => {
+        event.preventDefault();
+        this.setState({fullScreen: true}, () => {
+            canvasContainer.requestFullscreen();
+        });
+    }
+
+    exitFullScreen = event => {
+        event.preventDefault();
+        this.setState({fullScreen: false}, () => {
+            document.exitFullscreen();
+        }
+        )};
+
     render() {
         return (
             <div className="originalDemoContent">
@@ -229,7 +247,7 @@ class VideoOne extends Component {
                         </div>
                         <div className="row mt-1 justify-content-center">
                             <div className="embed-responsive embed-responsive-16by9" style={responsiveCanvas}>
-                                <div>
+                                <div id="canvasContainer">
                                     <canvas className="embed-responsive-item" id="myCanvas" width={canvasWidth} height={canvasHeight}></canvas>
                                     <div className="col-md-12 p-0" style={sceneControllers}>
                                         {this.state.sceneBreak &&
@@ -244,6 +262,12 @@ class VideoOne extends Component {
                                         }
                                         {!this.state.videoPlaying &&
                                             <img className="videoControlIcons float-left" src={playIcon} onClick={this.playVideo} />
+                                        }
+                                        {!this.state.fullScreen &&
+                                            <img className="videoControlIcons float-right" src={fullScreenIcon} onClick={this.setFullScreen} />
+                                        }
+                                        {this.state.fullScreen &&
+                                            <img className="videoControlIcons float-right" src={exitFullScreenIcon} onClick={this.exitFullScreen} />
                                         }
                                         {this.state.videoMuted &&
                                             <img className="videoControlIcons float-right" src={unmuteIcon} onClick={this.unmuteVideo} />

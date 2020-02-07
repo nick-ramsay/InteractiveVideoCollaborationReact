@@ -223,6 +223,7 @@ class VideoOne extends Component {
         event.preventDefault();
         this.setState({fullScreen: true}, () => {
             canvasContainer.requestFullscreen();
+            window.screen.orientation.lock("landscape");
         });
     }
 
@@ -230,6 +231,7 @@ class VideoOne extends Component {
         event.preventDefault();
         this.setState({fullScreen: false}, () => {
             document.exitFullscreen();
+            window.screen.orientation.unlock();
         }
         )};
 
